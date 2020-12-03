@@ -14,10 +14,14 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install dependencies
         run: |
-          sudo curl --proto '=https' --tlsv1.2 -sSf https://ssd.mathworks.com/supportfiles/ci/matlab-deps/v0/install.sh | bash
+          curl --output install.sh --proto '=https' --tlsv1.2 -sSf https://ssd.mathworks.com/supportfiles/ci/matlab-deps/v0/install.sh
+          chmod +x install.sh
+          sudo ./install.sh
       - name: Install matlab
         run: |
-          sudo curl --proto '=https' --tlsv1.2 -sSf https://ssd.mathworks.com/supportfiles/ci/ephemeral-matlab/v0/ci-install.sh | bash
+          curl --output ci-install.sh --proto '=https' --tlsv1.2 -sSf https://ssd.mathworks.com/supportfiles/ci/ephemeral-matlab/v0/ci-install.sh
+          chmod +x ci-install.sh
+          sudo ./ci-install.sh
       - name: Test matlab
         run: |
           which matlab
